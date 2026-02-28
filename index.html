@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, user-scalable=no">
+  <title>Health Equity and NTDs Research Institute, Ghana</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+<body>
+  <!-- TOP HEADER -->
+  <div class="topbar">
+    <div class="container">
+        <div class="logo">
+            <span>Health Equity and NTDs Research Institute, Ghana</span>
+        </div>
+        <div class="email">
+            <a href="mailto:henrig2030@gmail.com" class="email">
+        <span class="icon">✉</span> henrig2030@gmail.com
+      </a>
+        </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <nav class="nav">
+        <ul>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Focus Areas</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="team-godwin.html">Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="assets/hero/IMG_8142.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <h1 data-aos="fade-up">Advancing Health Equity</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Together, we work to reduce health disparities <br> and strengthen community well-being.</p>
+        <a href="#about" class="btn btn-primary" data-aos="fade-up" data-aos-delay="300" >Our Mission</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <h2>Why We Exist?</h2>
+        <h3>Toward equitable healthcare for all communities in Ghana</h3>
+        <p data-aos="fade-right">
+          In Ghana, many communities still face barriers to quality healthcare, from limited access to trained professionals, to unequal distribution of health resources, and the persistent burden of neglected tropical diseases (NTDs).
+        </p>
+        <p data-aos="fade-right" data-aos-delay="200">
+          The Health Equity and NTDs Research Institute, Ghana was founded to contribute in addressing these inequity through research, education, and collaboration. <strong>Our mission is to advocate for and promote fair and accessible health systems that reach even the most underserved and unserved populations.</strong>
+       </p>
+       <p class="next-section-text" data-aos="fade-in" >Explore our ongoing initiatives :</p>
+        <a href="#services" class="btn-outline" data-aos="fade-in">Focus Areas</a>
+      </div>
+      <div class="about-img" data-aos="fade-left">
+        <img src="assets/about/Why We Exist.jpg" alt="Researcher with microscope">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STATS -->
+<section id="stats" class="stats-section">
+  <div class="container-stats">
+    <h2>Health Equity in Numbers</h2>
+    <p class="section-intro">
+      Behind every statistic lies a story of lives affected by health inequality.
+      These numbers highlight why our work matters.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card" data-aos="fade-up">
+        <h3>1.9%</h3>
+        <p>of rural communities in Ghana has <strong>access to public and private hospitals</strong> as of 2021.</p>
+        <a href="https://www.statista.com/statistics/1278075/availability-of-basic-healthcare-facilities-in-ghana-by-area/">Source</a>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+        <h3>≈42%</h3>
+        <p>of Ghana's population <strong>live in underserved areas</strong>, where NTD's are also endemic.</p>
+        <a href="https://www.sciencedirect.com/science/article/pii/S2405579424000299">Source</a>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+        <h3>17%</h3>
+        <p>of <strong>essential medicines available</strong> in public health facilities in Ghana.</p>
+        <a href="https://ugspace.ug.edu.gh/items/bb4d5011-1724-4449-8933-9a7275341b61">Source</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- MAP -->
+ <section id="collaboration-map" class="map-section">
+  <div class="container">
+    <h2>Collaborations and Research Areas</h2>
+    <h3>Mapping our collaborations and research initiatives across Ghana.</h3>
+    <p style="text-align:center; color:#000000; font-style:italic; margin-top:8px;">
+      💡 Hover over or click the dots to view each district’s NTD endemicity and research details.
+    </p>
+    <div class="map-card" data-aos="fade-up">
+      <div id="map"></div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  const map = L.map('map').setView([7.9465, -1.0232], 6);
+
+  // Tile layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Research areas based on your table
+  const researchSites = [
+    {
+      region: "Savannah",
+      district: "Bole",
+      coords: [9.0333, -2.3833],
+      endemicity: "Lymphatic Filariasis, Onchocerciasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "Jama sub-district has high prevalence in Lymphatic Filariasis, Onchocerciasis, and Schistosomiasis"
+    },
+    {
+      region: "Bono",
+      district: "Wenchi",
+      coords: [7.7333, -2.1],
+      endemicity: "Lymphatic Filariasis, Onchocerciasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "Asuogya sub-district (Lymphatic Filariasis); Subinso sub-district (Onchocerciasis)"
+    },
+    {
+      region: "Western",
+      district: "Wassa East",
+      coords: [5.5, -1.65],
+      endemicity: "Lymphatic Filariasis, Onchocerciasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "Bosomae area – Lymphatic Filariasis transmission interrupted; Onchocerciasis transmission ongoing"
+    },
+    {
+      region: "Greater Accra",
+      district: "Ga East",
+      coords: [5.6833, -0.15],
+      endemicity: "Lymphatic Filariasis, Onchocerciasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "Burger Town – Lymphatic Filariasis transmission interrupted; Onchocerciasis detected; intervention started Jan 2024"
+    },
+    {
+      region: "Greater Accra",
+      district: "Ga South",
+      coords: [5.5333, -0.3333],
+      endemicity: "Lymphatic Filariasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "Adakope & Weija Lake communities – high Schistosomiasis prevalence; Lymphatic Filariasis transmission interrupted"
+    },
+    {
+      region: "Eastern",
+      district: "Asuogyaman",
+      coords: [6.25, 0.05],
+      endemicity: "Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "High Schistosomiasis prevalence in communities along the Volta Lake"
+    },
+    {
+      region: "Oti",
+      district: "Nkwanta South",
+      coords: [7.5167, 0.4667],
+      endemicity: "Onchocerciasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "High Schistosomiasis prevalence in communities along the Oti River"
+    },
+    {
+      region: "Oti",
+      district: "Nkwanta North",
+      coords: [7.8333, 0.25],
+      endemicity: "Onchocerciasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "High Schistosomiasis prevalence in communities along the Oti River"
+    },
+    {
+      region: "Oti",
+      district: "Kadjebi",
+      coords: [7.7333, 0.4667],
+      endemicity: "Onchocerciasis, Soil-Transmitted Helminths, Schistosomiasis",
+      remarks: "Onchocerciasis prevalence high along the Asukawkaw and Waawaa rivers"
+    }
+  ];
+
+  // Add markers
+  researchSites.forEach(site => {
+    const marker = L.circleMarker(site.coords, {
+      radius: 7,
+      color: "#007BFF",
+      fillColor: "#007BFF",
+      fillOpacity: 0.8
+    }).addTo(map);
+
+    // Tooltip (hover)
+    marker.bindTooltip(`<b>${site.district}</b><br>${site.endemicity}`, {
+      permanent: false,
+      direction: "top"
+    });
+
+    // Popup (click)
+    marker.bindPopup(`
+      <b>${site.district}, ${site.region} Region</b><br>
+      <b>NTD Endemicity:</b> ${site.endemicity}<br>
+      <b>Remarks:</b> ${site.remarks}
+    `);
+  });
+</script>
+
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2>Focus Areas of Our Work</h2>
+      <h3>Driving research and advocacy for communities</h3>
+      <div class="grid">
+        <div class="service-card" data-aos="zoom-in" style="background-image:url('assets/services/Population\ health\ research.jpg')">
+          <div class="overlay">
+            <h4>Population health research</h4>
+            <p>Conduct comprehensive studies on population health trends.</p>
+            <a href="service-PHR.html" class="btn-outline">Read more</a>
+          </div>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="200" style="background-image:url('assets/services/Policy\ Advocacy.jpg')">
+          <div class="overlay">
+            <h4>Policy advocacy</h4>
+            <p>Champion health equity through targeted policy initiatives.</p>
+            <a href="service-PA.html" class="btn-outline">Read more</a>
+          </div>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="400" style="background-image:url('assets/services/Support\ for\ NTDs.jpg')">
+          <div class="overlay">
+            <h4>Support for neglected tropical diseases (NTDs)</h4>
+            <p>Provide targeted assistance and resources for combating NTDs.</p>
+            <a href="service-NTDs.html" class="btn-outline">Read more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+<section id="faq" class="faq">
+  <div class="container-faq">
+      <h2>Want to understand NTDs better?</h2>
+      <p >Explore simple explanations, key facts, and common questions.</p>
+      <a href="faq.html" class="btn-outline" data-aos="fade-up">Go to FAQ</a>
+  </div>
+</section>
+
+
+  <!-- CONTACT FORM -->
+  <section id="contact" class="contact">
+    <div class="container contact-grid">
+      <div data-aos="fade-right">
+        <div>
+          <h2>Get in touch</h2>
+          <h3>We’d love to hear from you!</h3>
+          <form class="contact-form" id="contactForm">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+
+            <label for="email">Email address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+            <label for="phone">Phone number <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+233 xxx xxx xxx" required>
+
+            <label for="message">Message <span class="required">*</span></label>
+            <textarea id="message" name="message" placeholder="Tell us more..." required></textarea>
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
+          </form>
+        </div>
+      </div>
+      <div class="contact-info" data-aos="fade-left">
+        <h3>Get in touch</h3>
+        <p>
+            <a href="mailto:henrig2030@gmail.com" class="contact-link">
+                <span class="icon">✉</span>
+                <span class="text"> henrig2030@gmail.com</span>
+            </a>
+        </p>
+        <h3>Location</h3>
+         <p>
+            <a href="https://www.google.com/maps/place/Accra,+Greater+Accra,+Ghana"
+            target="_blank" class="contact-link">
+            <span class="icon">⚲</span>
+            <span class="text">Accra, Greater Accra Ghana</span>
+    </a>
+        </p>
+        <h3>Hours</h3>
+        <div class="hours">
+            <div class="row"><span class="day">Monday</span><span class="time">9:00am – 5:00pm</span></div>
+            <div class="row"><span class="day">Tuesday</span><span class="time">9:00am – 5:00pm</span></div>
+            <div class="row"><span class="day">Wednesday</span><span class="time">9:00am – 5:00pm</span></div>
+            <div class="row"><span class="day">Thursday</span><span class="time">9:00am – 5:00pm</span></div>
+            <div class="row"><span class="day">Friday</span><span class="time">9:00am – 5:00pm</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Footer -->
+<footer class="footer-team">
+  <div class="container">
+    <p>Health Equity and NTDs Research Institute, Ghana</p>
+    <ul class="footer-links">
+      <li><a href="scheduleappoinment.html">Schedule appoinment</a></li>
+      <li><a href="completeintake.html">Complete intake</a></li>
+      <li><a href="#">Resources</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,  /* animation duration */
+      once: true       /* run only once per element */
+    });
+  </script>
+
+  <!-- JS -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

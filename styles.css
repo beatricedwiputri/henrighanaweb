@@ -1,0 +1,1450 @@
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  color: #333;
+  background: #fafafa;
+  line-height: 1.6;
+}
+
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* TOPBAR */
+.topbar {
+  background: #eae7e6;
+  padding: 1rem ;
+  border-bottom: 1px solid #ddd;
+}
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar .logo {
+font-size: 1.3rem;
+font-weight:700;
+}
+
+.topbar .email {
+  color: #00695C;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.topbar .email a:hover{
+  text-decoration: underline;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #00695C;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+.nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+.nav li { margin: 0 1rem; 
+}
+.nav a {
+  display: block;
+  padding: 0.8rem 0;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  font-size: 1.1rem;
+}
+.nav a.active::after,
+.nav a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  height: 3px;
+  background: white;
+}
+
+/* Prevent images and videos from stretching wider than the screen */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make sure no container/section/header/footer exceeds screen width */
+.container, section, header, footer {
+  max-width: 100%;
+  overflow-x: clip; /* prevent sideways scroll if something overflows */
+}
+
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* make sure video covers like a background image */
+  z-index: -1;       /* keep it behind text */
+}
+
+.hero-overlay {
+  background: rgba(0,0,0,0.4); /* dark overlay so text is readable */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 75vh; /* slightly shorter for mobile */
+  }
+
+  .hero-video {
+    position: absolute; /* prevents zoom glitch */
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+/* BUTTONS */
+.btn, .btn-outline {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-primary {
+  background: #00695C;
+  color: white;
+  border: none;
+}
+.btn-primary:hover { background: #004d40; }
+.btn-outline {
+  border: 2px solid #333;
+  color: #333;
+}
+.btn-outline:hover { background: #004d40; color: white; }
+
+
+/* ABOUT */
+.about { background: #eae7e6;; padding: 4rem 0; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+}
+.about-text h2 { color: #00695C; font-size: 2.5rem; margin-bottom: 0.5rem }
+.about-text h3 { margin-bottom: 2rem; font-size: 1.8rem; }
+.about-text p { margin-bottom: 1.5rem; font-size: 1.2rem;; }
+.about-img img { width: 100%; border-radius: 8px;}
+.about-img {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+
+.next-section-text {
+  margin-top: 2rem;
+}
+
+
+/* STATS SECTION */
+.stats-section {
+  background: #efeeec;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.stats-section h2 {
+  color: #00695C;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.section-intro {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 3rem 1.8rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  color: #ee8720;
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.stat-card p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    padding: 1.8rem;
+  }
+}
+
+
+
+
+/* ==== MAP SECTION (letakkan di akhir CSS) ==== */
+/* offset aman saat klik anchor biar gak ketutup navbar sticky */
+section { scroll-margin-top: 80px; } /* sesuaikan kalau tinggi navbar beda */
+
+/* bungkus section map */
+.map-section {
+  position: relative;        /* agar z-index berfungsi */
+  z-index: 1;                /* pastikan di atas hero-video (yang -1) */
+  background: #e1e1e1;       /* senada sama tema */
+  padding: 5rem 0;           /* ruang atas-bawah */
+}
+
+.container{
+  max-width: 1200px;
+}
+
+/* header judul map */
+.container h2 {
+  margin-bottom: 0.3rem;
+  color: #00695C;            /* hijau temamu */
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.container h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+/* kartu pembungkus supaya map gak “nempel” ke tepi */
+.map-card {
+  background: #fff;
+  border-radius: 16px;
+  /* box-shadow: 0 10px 28px rgba(0,0,0,.08); */
+  overflow: hidden;          /* radius nempel ke map */
+}
+
+/* ukuran map responsif */
+#map {
+  inline-size: 100%;
+  block-size: clamp(320px, 50vh, 560px);  /* tinggi fleksibel */
+}
+
+/* Leaflet fixes: pastikan kontrol terlihat & font konsisten */
+.leaflet-container { 
+  z-index: 0; 
+  font-family: inherit;
+}
+.leaflet-control-container .leaflet-top,
+.leaflet-control-container .leaflet-bottom { z-index: 401; }
+
+/* jarak antar section biar rapi menyatu dengan Services & About */
+.services { margin-bottom: 0; } /* hapus gap bawah berlebih jika ada */
+.about { margin-top: 0; }       /* rapikan transisi ke about */
+
+@media (max-width: 768px) {
+  .map-section { padding: 2rem 0; }
+  .map-card { border-radius: 12px; }
+  .map-title { text-align: center; }
+}
+
+
+/* SERVICES */
+.services { padding: 4rem 0; background: #eae7e6; text-align: center; }
+.services h2 { color: #00695C; font-size: 2.2rem; margin-bottom: 0.5rem; }
+.services h3 { margin-bottom: 2rem; font-size: 1.5rem;}
+
+.services .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.service-card .overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgba(255,255,255,0.75);
+  width: 100%;
+  padding: 1rem;
+  text-align: left;
+}
+.service-card h4 { 
+    margin-bottom: 0.5rem; 
+    font-size: 1.5rem;
+}
+.service-card p { 
+    margin-bottom: 0.5rem; 
+    font-size: 1rem;
+}
+
+
+/* TEAM */
+.team { padding: 4rem 0; background: #eae7e6; text-align: center; }
+.team h2 { color: #00695C; font-size: 2.2rem; margin-bottom: 0.5rem; }
+.team h3 { margin-bottom: 1.2rem; font-size: 1.5rem; color: #666; }
+.team-card {
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+.team-card img { width: 80%; border-radius: 6px; margin-bottom: 1rem; }
+.team-card h4 { margin-bottom: 0.25rem; font-size: 1.5rem;}
+.team-card .role { font-weight: 600; color: #555; margin-bottom: 0.5rem; font-size: 1.1rem;}
+.team-card p { margin-bottom: 1rem; font-size: 1rem; }
+
+
+/* EVENTS */
+.light-section { background: #e1e1e1; padding: 6rem 0; text-align: center; }
+.light-section h2 { color: #00695C; margin-bottom: 0.5rem; font-size: 2.2rem;}
+.light-section p {font-size: 1.2rem; }
+
+
+/* CONTACT */
+.contact { padding: 4rem 0; background: #efeeec;}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.contact-grid h2 {color: #00695C; font-size: 2.2rem;}
+/* .contact-grid p {font-size: 1.2rem;} */
+
+
+/* FAQ Section */
+.faq {
+  background: #e1e1e1;
+  color: #00695C;
+  text-align: center;
+  padding: 6rem 4rem;
+}
+
+.faq h2 {
+  font-size: 2.2rem;
+}
+
+.faq p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: #212122;
+}
+
+/* FAQ Section HALAMAN BARU */
+.faq-page {
+  background-color: #eae7e6;
+}
+.faq-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .faq-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      color: #004d40;
+    }
+
+    .faq-item {
+      background: #ffffff7d;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      border-left: 5px solid #00695C;
+    }
+
+    .faq-question {
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .faq-answer {
+      margin-top: 10px;
+      display: none;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: "−";
+    }
+
+    .faq-question::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.4rem;
+      color: #00695C;
+    }
+
+/* FORM */
+form { 
+  padding-top: 1rem;
+  border-radius: 6px;
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.5rem; 
+}
+
+form label {
+  font-weight: 600;
+  display: block;
+}
+
+form .required {
+  color: red;
+}
+
+form input, 
+form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+form button {
+  background: #00695C;
+  color: white;
+  font-weight: 700;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #004d40;
+}
+
+
+/* CONTACT INFO */
+.contact-info {
+  background: #eae7e6 ;
+  padding: 2.5rem;
+  border-radius: 6px;
+  align-self: center;
+}
+.contact-info h3 { color: #00695C;font-size: 1.5rem; }
+.contact-info p { margin-bottom: 1.4rem; }
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;            /* space between icon and text */
+  color: #333;
+  text-decoration: none;  /* remove underline from whole link */
+}
+
+.contact-link .icon {
+  font-size: 1.2rem;      /* icon size */
+}
+
+.contact-link .text {
+  text-decoration: underline; /* underline only the text */
+}
+
+.contact-link:hover .text {
+  color: #00695C;         /* change color on hover */
+}
+
+.hours .row {
+  display: grid;
+  grid-template-columns: 120px auto; /* left column fixed, right flexible */
+  gap: 1rem; /* spacing between day and time */
+}
+
+.hours .day {
+  font-weight: 400;
+}
+
+.hours .time {
+  text-align: left;
+}
+
+
+/* FOOTER */
+.footer-team {
+  background: #00695C;
+  color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.footer-team p {
+  font-size: 1.3rem;
+  font-weight:800;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  font-weight: 400;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .footer-team {
+    padding-bottom: 3rem; /* add extra safe padding */
+  }
+  .footer-links {
+    flex-direction: column; /* stack links neatly */
+    gap: 0.5rem;
+  }
+}
+
+
+/* GRID SYSTEM */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-grid, .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* By default (desktop) */
+.nav-toggle {
+  display: none;
+}
+
+/* Desktop underline (centered) */
+.nav a {
+  position: relative; /* required for underline positioning */
+}
+
+.nav a.active::after,
+.nav a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  height: 3px;
+  background: white;
+}
+
+/* Mobile navbar */
+@media (max-width: 768px) {
+  .nav ul {
+    flex-direction: column;
+    background: #00695C;
+    padding: 1rem;
+    display: none; /* hidden by default */
+  }
+
+  .nav ul.active {
+    display: flex; /* show when toggled */
+  }
+
+  .nav li {
+    margin: 0;
+  }
+
+  .nav-toggle {
+    display: block;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: auto; /* push to right */
+  }
+
+  /* Remove underline on mobile */
+  .nav a.active::after,
+  .nav a:hover::after {
+    display: none;
+  }
+
+  /* Add background highlight on tap/hover */
+  .nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+  }
+
+  .nav a:hover,
+  .nav a:active {
+    background: rgba(255,255,255,0.2);
+  }
+}
+
+/* Mobile topbar fix */
+@media (max-width: 768px) {
+  .topbar .container {
+    flex-direction: column;   /* stack vertically */
+    align-items: flex-start;  /* align to left */
+    gap: 0.3rem;              /* small spacing */
+    padding: 0.2rem;
+  }
+
+  .topbar .logo {
+    font-size: 1.2rem;  /* smaller font */
+    line-height: 1.2;
+  }
+
+  .topbar .email {
+    font-size: 0.9rem;   /* slightly smaller email */
+  }
+}
+
+
+
+
+/* HTML BARU ===== READ MORE TEAM - PROFILE PAGE ===== */
+.profile {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 1rem;
+  background: #eae7e6;
+}
+
+.profile-card {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  max-width: 1100px;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Foto */
+.profile-card img {
+  width: 280px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Konten teks */
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h2 {
+  font-size: 2.2rem;
+  color: #00695C;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+.profile-info h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.profile-info p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+  text-align: justify;
+}
+
+.supervisors {
+  background: #e1e1e1;
+  padding: 3rem 1rem 2.5rem;
+  text-align: left;
+}
+
+.supervisors .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.supervisors h3 {
+  font-size: 1.6rem;
+  color: #00695C;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #00695C;
+  padding-left: 0.8rem;
+}
+
+.supervisors ul {
+  list-style: none;
+  padding: 0;
+}
+
+.supervisors li {
+  margin-bottom: 1.8rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.supervisors li strong{
+  font-size: 1.3rem;
+}
+
+
+/* ===== Responsive: Mobile view ===== */
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    padding: 1.5rem;
+  }
+
+  .profile-card img {
+    width: 200px;
+  }
+
+  .profile-info {
+    width: 100%;              /* make text block full width */
+  }
+
+  .profile-info h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.25rem;   /* tighter spacing */
+    margin-top: auto;
+  }
+
+  .profile-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #444;
+  }
+
+  .profile-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify;      /* or center if you prefer */
+    padding: 0 1rem;          /* little side padding */
+  }
+}
+
+/* CTA Section */
+.cta {
+  background: #212122;
+  color: #fff;
+  text-align: center;
+  padding: 6rem 4rem;
+}
+
+.cta h2 {
+  font-size: 3rem;
+}
+
+.cta p {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.cta .btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.cta .btn:hover {
+  background: #00695C;
+  border-color: #00695C;
+}
+
+
+/* HTML BARU ===== READ MORE SERVICE PAGE ===== */
+.service2 {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 1rem;
+  background: #eae7e6;
+  height: auto;
+  min-height: auto;
+  overflow: visible;
+}
+
+.service2-card {
+  display: flex;
+  flex-wrap: wrap;      /* allow stacking if too narrow */
+  gap: 2.5rem;
+  align-items: flex-start;
+  max-width: 1100px;
+  width: 100%;
+  padding: 1.5rem;
+  height: auto;         /* grow with content */
+  overflow: visible;
+}
+
+/* Foto */
+.service2-card img {
+  width: 400px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: scale-down;
+}
+
+/* Konten teks */
+.service2-info {
+  flex: 1;
+}
+
+.service2-info h2 {
+  font-size: 2.2rem;
+  color: #00695C;
+  margin-bottom: 1rem;
+}
+
+.service2-info p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+  text-align: justify;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== Responsive: Mobile view ===== */
+@media (max-width: 768px) {
+  .service2-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    padding: 1.5rem;
+  }
+
+  .service2-card img {
+    width: 300px;
+  }
+
+  .service2-info {
+    width: 100%;              /* make text block full width */
+  }
+
+  .service2-info h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    margin-top: auto;   
+  }
+
+  .service2-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify;      /* or center if you prefer */
+    padding: 0 1rem;          /* little side padding */
+    margin-bottom: 2rem;
+  }
+}
+
+
+/* HTML BARU ===== BLOG ===== */
+/* Hero banner khusus news */
+.blog-hero {
+  position: relative;
+  background: url("assets/blog/blog\ hero.jpg") center/cover no-repeat;
+  background-attachment: fixed;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.blog-hero .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-hero .hero-text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.blog-hero .hero-text h1 {
+  font-size: 3.5rem;
+}
+
+.blog-hero .hero-text p {
+  font-size: 1.2rem;
+}
+
+.blog {
+  padding: 3.5rem 1rem;
+  background: #eae7e6;
+}
+
+.blog h2 {
+  font-size: 2.7rem;
+  color: #00695C;
+  margin-top: 1.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.blog h3 {
+  margin-bottom: 4rem;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.blog-post {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+}
+
+.blog-post img {
+  width: 40%;
+  object-fit: cover;
+}
+
+.blog-content {
+  flex: 1;
+}
+
+.blog-content h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-content .date {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.blog-content p {
+  text-align: justify;
+  margin-bottom: 0.5rem;
+}
+
+.blog-content a.readmore{
+  color: #212122;
+}
+
+.blog-content a.readmore:hover{
+  color: #004d40
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .blog-post {
+    flex-direction: column; /* Susun vertikal */
+    text-align: left;       /* Biar teks rata kiri */
+  }
+
+  .blog-post img {
+    width: 100%;           /* Full lebar */
+    height: auto;
+  }
+}
+
+
+/* HTML BARU ===== BLOG SECTION ===== */
+.post {
+  padding: 4rem 1rem;
+  background: #f9f9f9;
+}
+
+.post .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post h1 {
+  font-size: 2rem;
+  color: #00695C;
+  margin-bottom: 0.5rem;
+}
+
+.post .meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.post img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.post h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.post p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #444;
+  text-align: justify;
+}
+
+/* HTML BARU ===== NEWS SECTION ===== */
+/* Hero banner khusus news */
+.news-hero {
+  position: relative;
+  background: url("assets/news/newshero.jpg") center/cover no-repeat;
+  background-attachment: fixed;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+/* .news-hero .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.news-hero .hero-text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.news-hero .hero-text h1 {
+  font-size: 3.5rem;
+}
+
+.news-hero .hero-text p {
+  font-size: 1.2rem;
+}
+
+
+/* News list */
+.news-list {
+  padding: 4rem 1rem;
+  background: #eae7e6;
+}
+
+.news-list h2 {
+  font-size: 2.5rem;
+  color: #00695C;
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+.news-list h3 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  margin: 3rem auto;
+  max-width: 700px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.news-card img {
+  width: 100%;
+  height: auto;
+}
+
+.news-content {
+  padding: 1.5rem;
+}
+
+.news-content h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-content .subtitle {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.news-content p {
+  margin-bottom: 1rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.news-content a.readmore {
+  color: #212122;
+  text-decoration: underline;
+}
+
+.news-content a.readmore:hover{
+  color: #004d40;
+}
+
+
+@media (max-width: 768px) {
+  .blog-hero,
+  .news-hero {
+    background-attachment: scroll; /* prevents zooming on mobile */
+    background-position: center top;
+    height: 260px; /* smaller for phones */
+  }
+}
+
+
+/* ===== SERVICE APPOINMENT & INTAKE PAGE ===== */
+.schedule {
+  padding: 4rem 1rem;
+  background: #eae7e6;
+}
+
+.schedule h2 {
+  color: #00695C;
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.schedule h3 {
+  text-align: center;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.schedule-form {
+  max-width: 650px;
+  margin: auto;
+}
+
+.schedule-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.schedule-form input,
+.schedule-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.3rem; */
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #00695C; /* green check color */
+}
+
+.schedule-form button {
+  margin-top: 1.8rem;
+  width: 100%;
+  padding: 1rem;
+  font-weight: 700;
+  background: #00695C;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.schedule-form button:hover {
+  background: #004d40;
+}
+
+/* Dropdown (select) styling */
+.schedule-form select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  background-color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  appearance: none; /* remove browser’s default arrow styling */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%2300695C' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+
+.intake-form {
+  max-width: 650px;
+  margin: auto;
+}
+
+.intake-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.intake-form input,
+.intake-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+}
+
+.intake-form select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  background-color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  appearance: none; /* remove browser’s default arrow styling */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%2300695C' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+/* ----- MOBILE (<=768px) ----- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+
+#passwordSection .containerpass {
+  max-width: 500px;       /* kolom tidak terlalu panjang */
+  margin: 50px auto;      /* center horizontal & vertical spacing */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+#passwordSection h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+#passwordSection p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* Jarak antar section */
+.section-divider {
+  margin: 60px 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Form styling */
+#blogForm input,
+#blogForm textarea,
+#blogForm button {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#blogForm textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Blog cards */
+#blogList > div {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}

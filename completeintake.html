@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, user-scalable=no">
+  <title>Health Equity and NTDs Research Institute, Ghana</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <!-- TOP HEADER -->
+  <div class="topbar">
+    <div class="container">
+        <div class="logo">
+            <span>Health Equity and NTDs Research Institute, Ghana</span>
+        </div>
+        <div class="email">
+            <a href="mailto:henrig2030@gmail.com" class="email">
+        <span class="icon">✉</span> henrig2030@gmail.com
+      </a>
+        </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Focus Areas</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="team-godwin.html">Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+ <!-- INTAKE FORM -->
+  <section class="schedule">
+    <div class="container">
+      <h2 data-aos="fade-up">Intake Form</h2>
+      <h3 data-aos="fade-up" data-aos-delay="200">Help us serve you better</h3>
+
+      <form class="intake-form" id ="intakeForm" data-aos="fade-up" data-aos-delay="400">
+        <label for="name">Full Name <span class="required">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+        <label>What is your primary area of interest?<span class="required">*</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="interest[]" value="NTDs"> Neglected Tropical Diseases</label>
+          <label><input type="checkbox" name="interest[]" value="Health"> Health Equity</label>
+          <label><input type="checkbox" name="interest[]" value="Population"> Population Health</label>
+          <label><input type="checkbox" name="interest[]" value="SDGs"> Sustainable Development Goals (SDGs)</label>
+          <label><input type="checkbox" name="interest[]" value="Policy"> Policy Advocacy</label>
+        </div>
+
+        <label for="hear">How did you hear about us?<span class="required">*</span></label>
+        <select id="hear" name="hear" required>
+          <option value="" disabled selected>Select</option>
+          <option value="social">Social Media</option>
+          <option value="referral">Referral</option>
+          <option value="search">Search Engine</option>
+          <option value="event">Event</option>
+          <option value="newsletter">Newsletter</option>
+        </select>
+
+        <label>What type of support are you seeking?<span class="required">*</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="support[]" value="Consultation"> Consultation</label>
+          <label><input type="checkbox" name="support[]" value="Research Collaboration"> Research Collaboration</label>
+          <label><input type="checkbox" name="support[]" value="Policy"> Policy Development</label>
+          <label><input type="checkbox" name="support[]" value="Training"> Training and Workshops</label>
+          <label><input type="checkbox" id="others-checkbox" name="support[]" value="Others"> Others</label>
+          <input type="text" id="others-text" name="other_support" placeholder="Please specify..." style="display:none; margin-top:5px;">
+        </div>
+
+        <script>
+          const othersCheckbox = document.getElementById("others-checkbox");
+          const othersText = document.getElementById("others-text");
+
+          othersCheckbox.addEventListener("change", function() {
+            if (this.checked) {
+              othersText.style.display = "block";
+              othersText.focus();
+            } else {
+              othersText.style.display = "none";
+              othersText.value = ""; // clear when unchecked
+            }
+          });
+        </script>
+
+        <label for="organization">What is your organization type?<span class="required">*</span></label>
+        <select id="organization" name="organization" required>
+          <option value="" disabled selected>Select</option>
+          <option value="nonprofit">Non-profit</Non-profit></option>
+          <option value="government">Government</option>
+          <option value="academic">Academic Institution</option>
+          <option value="private">Private Sector</option>
+          <option value="international">International Organization</option>
+        </select>
+
+        <label for="location">What is your location?<span class="required">*</span></label>
+        <input type="text" id="location" name="location" placeholder="Enter your city or country" required>
+
+
+        <label for="message">Additional questions or comments</label>
+        <textarea id="message" name="message" rows="4" placeholder="Enter any additional questions or comments..."></textarea>
+
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+      </form>
+    </div>
+  </section> 
+
+<!-- Footer -->
+<footer class="footer-team">
+  <div class="container">
+    <p>Health Equity and NTDs Research Institute, Ghana</p>
+    <ul class="footer-links">
+      <li><a href="scheduleappoinment.html">Schedule appoinment</a></li>
+      <li><a href="completeintake.html">Complete intake</a></li>
+      <li><a href="#">Resources</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,  /* animation duration */
+      once: true       /* run only once per element */
+    });
+  </script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+
+  <!-- JS -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Blog - HENRIG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #eae7e6;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    nav {
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      color: black;
+    }
+
+    input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* khusus button di form */
+#blogForm button {
+  width: 10%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+  float: right;
+}
+
+nav button {
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #blogList > div {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+
+  <div style="background:#fff; padding:40px; width:700px; max-width:95%; border-radius:15px;">
+    
+    <h2>Edit Blog</h2>
+
+    <input type="text" id="editTitle" placeholder="Title">
+    <input type="text" id="editAuthor" placeholder="Author">
+    <input type="date" id="editDate">
+    <input type="file" id="editImage" accept="image/*">
+    <textarea id="editContent" rows="8"></textarea>
+    
+
+    <button type="button" id="saveEditBtn">Save Changes</button>
+    <button type="button" onclick="closeEditModal()">Cancel</button>
+
+  </div>
+</div>
+
+<div class="container">
+
+  <nav>
+    <a href="admin-blog.html">Blog</a>
+    <a href="admin-forms.html">Form Submissions</a>
+    <button onclick="logout()" style="float:right;">Logout</button>
+  </nav>
+
+  <h2>Manage Blog Posts</h2>
+
+  <form id="blogForm">
+    <input type="text" id="title" placeholder="Title" required>
+    <input type="date" id="date" required>
+    <input type="text" id="author" placeholder="Author" required>
+    <input type="file" id="image" accept="image/*" required>
+    <textarea id="content" placeholder="Content" required></textarea>
+    <button type="submit">Upload</button>
+  </form>
+
+  <h3>Uploaded Blogs</h3>
+  <div id="blogMessage" style="margin-bottom: 15px; font-weight:600; color:green;"></div>
+<div id="blogLoading" style="display:none; margin-bottom:15px;">⏳ Loading...</div>
+  <div id="blogList">Loading...</div>
+
+</div>
+
+<script>
+  // Cek apakah sudah login
+  if (localStorage.getItem("adminLoggedIn") !== "true") {
+    window.location.href = "admin.html";
+  }
+</script>
+
+<script type="module" src="admin.js"></script>
+
+<script>
+function logout() {
+  localStorage.removeItem("adminLoggedIn");
+  window.location.href = "admin.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, user-scalable=no">
+  <title>Health Equity and NTDs Research Institute, Ghana</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <!-- TOP HEADER -->
+  <div class="topbar">
+    <div class="container">
+        <div class="logo">
+            <span>Health Equity and NTDs Research Institute, Ghana</span>
+        </div>
+        <div class="email">
+            <a href="mailto:henrig2030@gmail.com" class="email">
+        <span class="icon">✉</span> henrig2030@gmail.com
+      </a>
+        </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Focus Areas</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="team-godwin.html">Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+ <!-- SCHEDULE FORM -->
+  <section class="schedule">
+    <div class="container">
+      <h2 data-aos="fade-up">Meeting Request Form</h2>
+      <h3 data-aos="fade-up" data-aos-delay="200">We look forward to meeting with you</h3>
+
+      <form class="schedule-form" id="scheduleForm" data-aos="fade-up" data-aos-delay="400">
+        <label for="name">Full Name <span class="required">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+        <label for="phone">Phone Number <span class="required">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+233 xxx xxx xxx" required>
+
+        <label>Service of Interest <span class="required">*</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="service[]" value="population"> Population health research</label>
+          <label><input type="checkbox" name="service[]" value="policy"> Policy advocacy</label>
+          <label><input type="checkbox" name="service[]" value="ntds"> Support for neglected tropical diseases (NTDs)</label>
+        </div>
+
+        <label for="date">Preferred Date <span class="required">*</span></label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Preferred Time <span class="required">*</span></label>
+        <select id="time" name="time" required disabled>
+          <option value="">Select a weekday first</option>
+        </select>
+
+        <small>Available Monday to Friday, 9:00 AM – 5:00 PM (GMT +0, Ghana time)</small>
+
+        <script>
+        const dateInput = document.getElementById("date");
+        const timeSelect = document.getElementById("time");
+
+        // Generate dropdown options every 30 mins between 9:00–17:00
+        function generateTimeOptions() {
+          timeSelect.innerHTML = "";
+          const startHour = 9;
+          const endHour = 17;
+          const interval = 30; // minutes
+
+          for (let hour = startHour; hour < endHour; hour++) {
+            for (let min = 0; min < 60; min += interval) {
+              const h = hour.toString().padStart(2, "0");
+              const m = min.toString().padStart(2, "0");
+              const time24 = `${h}:${m}`;
+
+              // Convert to readable 12-hour format
+              const displayHour = hour > 12 ? hour - 12 : hour;
+              const ampm = hour >= 12 ? "PM" : "AM";
+              const displayTime = `${displayHour}:${m} ${ampm}`;
+
+              const option = document.createElement("option");
+              option.value = time24;
+              option.textContent = `${displayTime} GMT`;
+              timeSelect.appendChild(option);
+            }
+          }
+
+          timeSelect.disabled = false;
+        }
+        
+
+        // Disable weekends
+        dateInput.addEventListener("change", () => {
+          const selected = new Date(dateInput.value);
+          const day = selected.getUTCDay(); // Sunday=0, Saturday=6
+          if (day === 0 || day === 6) {
+            alert("Please select a weekday (Monday–Friday).");
+            dateInput.value = "";
+            timeSelect.innerHTML = "<option value=''>Select a weekday first</option>";
+            timeSelect.disabled = true;
+          } else {
+            generateTimeOptions();
+          }
+        });
+        </script>
+
+        <label for="message">Message / Notes</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell us more..."></textarea>
+
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+      </form>
+    </div>
+  </section> 
+
+<!-- Footer -->
+<footer class="footer-team">
+  <div class="container">
+    <p>Health Equity and NTDs Research Institute, Ghana</p>
+    <ul class="footer-links">
+      <li><a href="scheduleappoinment.html">Schedule appoinment</a></li>
+      <li><a href="completeintake.html">Complete intake</a></li>
+      <li><a href="#">Resources</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,  /* animation duration */
+      once: true       /* run only once per element */
+    });
+  </script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+
+  <!-- JS -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

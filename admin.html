@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Access - HENRIG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #eae7e6;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 100px auto;
+      padding: 40px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Admin Dashboard Access</h2>
+    <p>Enter password</p>
+
+    <form id="passwordForm">
+      <input type="password" id="passwordInput" placeholder="Enter password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+  const correctPassword = "0"; // password kamu
+
+  document.getElementById("passwordForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    const input = document.getElementById("passwordInput").value;
+
+    if(input === correctPassword){
+
+      // Simpan status login
+      localStorage.setItem("adminLoggedIn", "true");
+
+      // Redirect ke blog page
+      window.location.href = "admin-blog.html";
+
+    } else {
+      alert("Wrong password!");
+    }
+  });
+</script>
+
+</body>
+</html>
