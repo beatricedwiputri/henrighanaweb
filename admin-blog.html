@@ -5,6 +5,12 @@
   <title>Admin Blog - HENRIG</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <!-- Quill CSS -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+  <!-- Quill JS -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
   <style>
     body {
       background: #eae7e6;
@@ -79,6 +85,24 @@ nav button {
       border-radius: 12px;
       margin-bottom: 20px;
     }
+
+      #editModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* make sure modal is above toolbar */
+  }
+
+  #editModal > div {
+    position: relative; /* keep content above the overlay */
+    z-index: 2001;
+  }
   </style>
 </head>
 <body>
@@ -94,8 +118,8 @@ nav button {
     <input type="text" id="editAuthor" placeholder="Author">
     <input type="date" id="editDate">
     <input type="file" id="editImage" accept="image/*">
-    <textarea id="editContent" rows="8"></textarea>
-    
+    <!-- <textarea id="editContent" rows="8"></textarea> -->
+    <div id="editEditor" style="height:200px; border:1px solid #ccc;"></div>
 
     <button type="button" id="saveEditBtn">Save Changes</button>
     <button type="button" onclick="closeEditModal()">Cancel</button>
@@ -118,7 +142,8 @@ nav button {
     <input type="date" id="date" required>
     <input type="text" id="author" placeholder="Author" required>
     <input type="file" id="image" accept="image/*" required>
-    <textarea id="content" placeholder="Content" required></textarea>
+    <!-- <textarea id="content" placeholder="Content" required></textarea> -->
+     <div id="editor" style="height:200px; border:1px solid #ccc;"></div>
     <button type="submit">Upload</button>
   </form>
 

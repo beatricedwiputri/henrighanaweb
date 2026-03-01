@@ -61,24 +61,61 @@ async function loadBlogs() {
       const data = docSnap.data();
       const id = docSnap.id;
 
+      // Use data-* attributes to store info safely
       html += `
-        <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px;">
+        <div class="blog-card" 
+             data-id="${id}"
+             data-title="${data.title}"
+             data-author="${data.author}"
+             data-date="${data.date}"
+             data-content='${encodeURIComponent(data.content)}'
+             data-imageurl="${data.imageUrl}"
+             data-imagepath="${data.imagePath || ''}"
+             style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius:10px; background:#f9f9f9;">
           <h3>${data.title}</h3>
           <p><strong>Author:</strong> ${data.author}</p>
           <p><strong>Date:</strong> ${data.date}</p>
-          <button onclick="editBlog('${id}', '${data.title}', '${data.author}', '${data.date}', \`${data.content}\`,'${data.imageUrl}', '${data.imagePath || ""}')">Edit</button>
-          <button onclick="deleteBlog('${id}', '${data.imageUrl}')">Delete</button>
+          <div class="blog-content" style="margin-top:10px;">
+            ${data.content}
+          </div>
+          <button class="edit-btn" style="margin-top:10px;">Edit</button>
+          <button class="delete-btn" style="margin-top:10px;">Delete</button>
         </div>
       `;
     });
 
     blogList.innerHTML = html;
 
+    // Add event listeners for Edit/Delete buttons
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.blog-card');
+        const id = card.dataset.id;
+        const title = card.dataset.title;
+        const author = card.dataset.author;
+        const date = card.dataset.date;
+        const content = decodeURIComponent(card.dataset.content);
+        const imageUrl = card.dataset.imageurl;
+        const imagePath = card.dataset.imagepath;
+
+        editBlog(id, title, author, date, content, imageUrl, imagePath);
+      });
+    });
+
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.blog-card');
+        const id = card.dataset.id;
+        const imageUrl = card.dataset.imageurl;
+        deleteBlog(id, imageUrl);
+      });
+    });
+
   } catch (error) {
     console.error(error);
+    blogList.innerHTML = "<p>Failed to load blogs.</p>";
   }
 }
-
 const blogMessage = document.getElementById("blogMessage");
 const blogLoading = document.getElementById("blogLoading");
 
@@ -175,7 +212,8 @@ if (blogForm) {
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
     const author = document.getElementById("author").value;
-    const content = document.getElementById("content").value;
+    // const content = document.getElementById("content").value;
+    const content = quill.root.innerHTML;
     const imageFile = document.getElementById("image").files[0];
 
     try {
@@ -255,7 +293,8 @@ window.editBlog = function(id, title, author, date, content, imageUrl, imagePath
   document.getElementById("editTitle").value = title;
   document.getElementById("editAuthor").value = author;
   document.getElementById("editDate").value = date;
-  document.getElementById("editContent").value = content;
+  // document.getElementById("editContent").value = content;
+  quillEdit.root.innerHTML = content;
 
   // Tampilkan preview gambar lama
   const preview = document.getElementById("editImagePreview");
@@ -280,7 +319,8 @@ if (saveEditBtn) {
       const newTitle = document.getElementById("editTitle").value;
       const newAuthor = document.getElementById("editAuthor").value;
       const newDate = document.getElementById("editDate").value;
-      const newContent = document.getElementById("editContent").value;
+      // const newContent = document.getElementById("editContent").value;
+      const newContent = quillEdit.root.innerHTML;
       const newImageFile = document.getElementById("editImage")?.files[0];
 
       let updatedData = {
@@ -332,4 +372,33 @@ if (saveEditBtn) {
 document.addEventListener("DOMContentLoaded", () => {
   loadBlogs();
   loadData();
+});
+
+
+// Initialize Quill for upload
+const quill = new Quill('#editor', {
+  theme: 'snow',
+  modules: {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      ['clean']
+    ]
+  }
+});
+
+// Initialize Quill for edit modal
+const quillEdit = new Quill('#editEditor', {
+  theme: 'snow',
+  modules: {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      ['clean']
+    ]
+  }
 });

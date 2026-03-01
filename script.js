@@ -81,55 +81,6 @@ document.querySelectorAll(".nav a").forEach(link => {
 
 
 
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-
-import { getFirestore, collection, addDoc, serverTimestamp } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-lite.js";
-
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyBYtqS1Az_bRk6yopZ3prUtZfeb1LxJoSI",
-  authDomain: "henrighanaweb.firebaseapp.com",
-  projectId: "henrighanaweb",
-  storageBucket: "henrighanaweb.firebasestorage.app",
-  messagingSenderId: "15069329514",
-  appId: "1:15069329514:web:b70d904d3e1ccc257cf213",
-  measurementId: "G-CXDJFWTW6Y"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-
-// =====================
-// EMAILJS INIT
-// =====================
-// (function(){
-//   emailjs.init("YOURcxFBK53zv9-nQJJjB"); // replace with your EmailJS User ID
-// })();
-
-// =====================
-// HELPER FUNCTION TO SEND EMAIL
-// =====================
-// async function sendEmail(data) {
-//   try {
-//     await emailjs.send("YOUR_SERVICE_ID", "template_yj7si38", {
-//       type: data.type,
-//       name: data.name,
-//       email: data.email,
-//       phone: data.phone || "-",
-//       message: data.message || "-",
-//       submitted_at: new Date().toLocaleString(),
-//       dashboard_link: "https://www.henrighana.org/admin.html"
-//     });
-//   } catch (err) {
-//     console.error("EmailJS error:", err);
-//   }
-// }
-
-
 // =====================
 // INTAKE FORM
 // =====================
