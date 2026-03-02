@@ -1,3 +1,27 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYtqS1Az_bRk6yopZ3prUtZfeb1LxJoSI",
+  authDomain: "henrighanaweb.firebaseapp.com",
+  projectId: "henrighanaweb",
+  storageBucket: "henrighanaweb.firebasestorage.app",
+  messagingSenderId: "15069329514",
+  appId: "1:15069329514:web:b70d904d3e1ccc257cf213",
+  measurementId: "G-CXDJFWTW6Y"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav a");
 

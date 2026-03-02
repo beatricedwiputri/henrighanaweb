@@ -159,6 +159,30 @@ async function loadData() {
 /* =========================
    RENDER FORM DATA
 ========================= */
+// function renderData(docs) {
+//   const dataList = document.getElementById("dataList");
+//   if (!dataList) return;
+
+//   if (!docs.length) {
+//     dataList.innerHTML = "<p>No data found.</p>";
+//     return;
+//   }
+
+//   let html = "";
+
+//   docs.forEach((data) => {
+//     html += `<div style="border:1px solid #ddd; padding:15px; margin-bottom:15px;">`;
+//     html += `<p><strong>Type:</strong> ${data.type}</p>`;
+//     html += `<p><strong>Name:</strong> ${data.name}</p>`;
+//     html += `<p><strong>Email:</strong> ${data.email}</p>`;
+//     html += `<p><strong>Submitted At:</strong> ${data.timestamp ? data.timestamp.toDate() : "-"}</p>`;
+//     html += `</div>`;
+//   });
+
+//   dataList.innerHTML = html;
+// }
+
+
 function renderData(docs) {
   const dataList = document.getElementById("dataList");
   if (!dataList) return;
@@ -172,15 +196,51 @@ function renderData(docs) {
 
   docs.forEach((data) => {
     html += `<div style="border:1px solid #ddd; padding:15px; margin-bottom:15px;">`;
-    html += `<p><strong>Type:</strong> ${data.type}</p>`;
-    html += `<p><strong>Name:</strong> ${data.name}</p>`;
-    html += `<p><strong>Email:</strong> ${data.email}</p>`;
-    html += `<p><strong>Submitted At:</strong> ${data.timestamp ? data.timestamp.toDate() : "-"}</p>`;
+
+    html += `<p><strong>Type:</strong> ${data.type || "-"}</p>`;
+    html += `<p><strong>Name:</strong> ${data.name || "-"}</p>`;
+    html += `<p><strong>Email:</strong> ${data.email || "-"}</p>`;
+    html += `<p><strong>Submitted At:</strong> ${
+      data.timestamp ? data.timestamp.toDate().toLocaleString() : "-"
+    }</p>`;
+
+    // ===== INTAKE =====
+    if (data.type === "intake") {
+      html += `<p><strong>Hear:</strong> ${data.hear || "-"}</p>`;
+      html += `<p><strong>Location:</strong> ${data.location || "-"}</p>`;
+      html += `<p><strong>Organization:</strong> ${data.organization || "-"}</p>`;
+      html += `<p><strong>Interests:</strong> ${
+        data.interests ? data.interests.join(", ") : "-"
+      }</p>`;
+      html += `<p><strong>Support:</strong> ${
+        data.support ? data.support.join(", ") : "-"
+      }</p>`;
+      html += `<p><strong>Message:</strong> ${data.message || "-"}</p>`;
+    }
+
+    // ===== SCHEDULE =====
+    if (data.type === "schedule") {
+      html += `<p><strong>Date:</strong> ${data.date || "-"}</p>`;
+      html += `<p><strong>Time:</strong> ${data.time || "-"}</p>`;
+      html += `<p><strong>Message:</strong> ${data.message || "-"}</p>`;
+      html += `<p><strong>Phone:</strong> ${data.phone || "-"}</p>`;
+      html += `<p><strong>Services:</strong> ${
+        data.services ? data.services.join(", ") : "-"
+      }</p>`;
+    }
+
+    // ===== WEBSITE CONTACT =====
+    if (data.type === "website-contact") {
+      html += `<p><strong>Phone:</strong> ${data.phone || "-"}</p>`;
+      html += `<p><strong>Message:</strong> ${data.message || "-"}</p>`;
+    }
+
     html += `</div>`;
   });
 
   dataList.innerHTML = html;
 }
+
 
 /* =========================
    FILTER
