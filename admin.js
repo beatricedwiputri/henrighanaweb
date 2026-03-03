@@ -21,6 +21,7 @@ import {
   deleteObject 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // FIREBASE CONFIG
 const firebaseConfig = {
@@ -36,6 +37,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 let allDocs = [];
 
@@ -401,7 +404,6 @@ if (saveEditBtn) {
   });
 }
 
-
 /* =========================
    AUTO LOAD PER PAGE
 ========================= */
@@ -436,5 +438,79 @@ const quillEdit = new Quill('#editEditor', {
       [{ 'align': [] }],
       ['clean']
     ]
+  }
+});
+
+
+// // OPTIONAL: Protect admin pages
+// onAuthStateChanged(auth, (user) => {
+//   if (user && localStorage.getItem("adminLoggedIn") !== "true") {
+//     console.log("Signed in but not flagged yet in localStorage");
+//   }
+// });
+
+// // Google Sign-In button
+// document.getElementById("googleSignInBtn").addEventListener("click", async () => {
+//   try {
+//     const result = await signInWithPopup(auth, provider);
+//     const user = result.user;
+
+//     console.log("Signed in as:", user.email);
+
+//     // IMPORTANT: Firebase Storage rules will check `isAdmin` claim
+//     // Make sure this user has isAdmin=true in Firebase Admin SDK
+//     const idTokenResult = await user.getIdTokenResult();
+//     console.log("Token claims:", idTokenResult.claims);
+
+//     if (!idTokenResult.claims.isAdmin) {
+//       alert("Unauthorized user! Admin access required.");
+//       await auth.signOut();
+//       return;
+//     }
+
+//     // Save login status locally
+//     localStorage.setItem("adminLoggedIn", "true");
+
+//     // Redirect to admin page
+//     window.location.href = "admin-blog.html";
+
+//   } catch (error) {
+//     console.error("Sign-in failed:", error);
+//     alert("Sign in failed: " + error.message);
+//   }
+// });
+
+// const idTokenResult = await user.getIdTokenResult();
+// if (!idTokenResult.claims.isAdmin) {
+//   alert("Unauthorized user!");
+//   await auth.signOut();
+//   return;
+// }
+
+document.getElementById("googleSignInBtn").addEventListener("click", async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    // Whitelist of allowed admin emails
+    const allowedAdmins = [
+      "henrighana2030@gmail.com",
+      "henrighanawebsite@gmail.com"
+    ];
+
+    if (!allowedAdmins.includes(user.email)) {
+      alert("Unauthorized user!");
+      await auth.signOut();
+      return;
+    }
+
+    // Save login status
+    localStorage.setItem("adminLoggedIn", "true");
+
+    // Redirect to admin dashboard
+    window.location.href = "admin-blog.html";
+  } catch (error) {
+    console.error(error);
+    alert("Sign in failed: " + error.message);
   }
 });
