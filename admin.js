@@ -159,30 +159,6 @@ async function loadData() {
 /* =========================
    RENDER FORM DATA
 ========================= */
-// function renderData(docs) {
-//   const dataList = document.getElementById("dataList");
-//   if (!dataList) return;
-
-//   if (!docs.length) {
-//     dataList.innerHTML = "<p>No data found.</p>";
-//     return;
-//   }
-
-//   let html = "";
-
-//   docs.forEach((data) => {
-//     html += `<div style="border:1px solid #ddd; padding:15px; margin-bottom:15px;">`;
-//     html += `<p><strong>Type:</strong> ${data.type}</p>`;
-//     html += `<p><strong>Name:</strong> ${data.name}</p>`;
-//     html += `<p><strong>Email:</strong> ${data.email}</p>`;
-//     html += `<p><strong>Submitted At:</strong> ${data.timestamp ? data.timestamp.toDate() : "-"}</p>`;
-//     html += `</div>`;
-//   });
-
-//   dataList.innerHTML = html;
-// }
-
-
 function renderData(docs) {
   const dataList = document.getElementById("dataList");
   if (!dataList) return;

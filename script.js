@@ -124,6 +124,15 @@ if (intakeForm) {
     const location = intakeForm.location.value;
     const message = intakeForm.message.value;
 
+    const button = intakeForm.querySelector("button[type='submit']");
+    const btnText = button.querySelector(".btn-text");
+    const btnLoading = button.querySelector(".btn-loading");
+
+    // 🔹 START LOADING
+    button.disabled = true;
+    btnText.style.display = "none";
+    btnLoading.style.display = "inline";
+
     try {
       await addDoc(collection(db, "contacts"), {
         type: "intake",
@@ -138,34 +147,40 @@ if (intakeForm) {
         timestamp: serverTimestamp()
       });
 
-      await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
-        type: "Intake Form",
-        name: name || "-",
-        email: email || "-",
-        phone: "-",
-        organization: organization || "-",
-        location: location || "-",
-        hear: hear || "-",
-        interests: interests.length ? interests.join(", ") : "-",
-        services: "-",
-        support: support.length ? support.join(", ") : "-",
-        date: "-",
-        time: "-",
-        message: message || "-"
-      });
+      // await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
+      //   type: "Intake Form",
+      //   name: name || "-",
+      //   email: email || "-",
+      //   phone: "-",
+      //   organization: organization || "-",
+      //   location: location || "-",
+      //   hear: hear || "-",
+      //   interests: interests.length ? interests.join(", ") : "-",
+      //   services: "-",
+      //   support: support.length ? support.join(", ") : "-",
+      //   date: "-",
+      //   time: "-",
+      //   message: message || "-"
+      // });
 
-      await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
-        type: "Intake Form", // or Website Contact / Schedule Appointment
-        name: name,
-        email: email
-      });
+      // await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
+      //   type: "Intake Form", // or Website Contact / Schedule Appointment
+      //   name: name,
+      //   email: email
+      // });
 
       alert("Thank you! Your intake form has been submitted.");
       intakeForm.reset();
+
     } catch (err) {
       console.error(err);
       alert("Failed to submit. Try again.");
     }
+
+    // 🔹 STOP LOADING (always runs)
+    button.disabled = false;
+    btnText.style.display = "inline";
+    btnLoading.style.display = "none";
   });
 }
 
@@ -183,6 +198,15 @@ if (contactForm) {
     const phone = contactForm.phone.value;
     const message = contactForm.message.value;
 
+    const button = contactForm.querySelector("button[type='submit']");
+    const btnText = button.querySelector(".btn-text");
+    const btnLoading = button.querySelector(".btn-loading"); 
+
+     // 🔹 START LOADING
+    button.disabled = true;
+    btnText.style.display = "none";
+    btnLoading.style.display = "inline";
+
     try {
       await addDoc(collection(db, "contacts"), {
         type: "website-contact",
@@ -193,35 +217,40 @@ if (contactForm) {
         timestamp: serverTimestamp()
       });
 
-      await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
-        type: "Contact Form",
-        name: name || "-",
-        email: email || "-",
-        phone: phone || "-",
-        organization: "-",
-        location: "-",
-        hear: "-",
-        interests: "-",
-        services: "-",
-        support: "-",
-        date: "-",
-        time: "-",
-        message: message || "-"
-      });
+      // await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
+      //   type: "Contact Form",
+      //   name: name || "-",
+      //   email: email || "-",
+      //   phone: phone || "-",
+      //   organization: "-",
+      //   location: "-",
+      //   hear: "-",
+      //   interests: "-",
+      //   services: "-",
+      //   support: "-",
+      //   date: "-",
+      //   time: "-",
+      //   message: message || "-"
+      // });
 
-      await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
-        type: "Contact Form", // or Website Contact / Schedule Appointment
-        name: name,
-        email: email
-      });
+      // await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
+      //   type: "Contact Form", // or Website Contact / Schedule Appointment
+      //   name: name,
+      //   email: email
+      // });
 
       alert("Message sent!");
       contactForm.reset();
+
     } catch (err) {
       console.error(err);
       alert("Failed to send message. Try again.");
     }
 
+    // 🔹 STOP LOADING (always runs)
+    button.disabled = false;
+    btnText.style.display = "inline";
+    btnLoading.style.display = "none";
   });
 }
 
@@ -241,6 +270,15 @@ if (scheduleForm) {
     const time = scheduleForm.time.value;
     const message = scheduleForm.message.value;
 
+    const button = scheduleForm.querySelector("button[type='submit']");
+    const btnText = button.querySelector(".btn-text");
+    const btnLoading = button.querySelector(".btn-loading");
+
+    // 🔹 START LOADING
+    button.disabled = true;
+    btnText.style.display = "none";
+    btnLoading.style.display = "inline";
+
     try {
       await addDoc(collection(db, "contacts"), {
         type: "schedule",
@@ -254,35 +292,41 @@ if (scheduleForm) {
         timestamp: serverTimestamp()
       });
 
-      await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
-        type: "Schedule Appointment",
-        name: name || "-",
-        email: email || "-",
-        phone: phone || "-",
-        organization: "-",
-        location: "-",
-        hear: "-",
-        interests: "-",
-        services: services.length ? services.join(", ") : "-",
-        support: "-",
-        date: date || "-",
-        time: time || "-",
-        message: message || "-"
-      });
+      // await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
+      //   type: "Schedule Appointment",
+      //   name: name || "-",
+      //   email: email || "-",
+      //   phone: phone || "-",
+      //   organization: "-",
+      //   location: "-",
+      //   hear: "-",
+      //   interests: "-",
+      //   services: services.length ? services.join(", ") : "-",
+      //   support: "-",
+      //   date: date || "-",
+      //   time: time || "-",
+      //   message: message || "-"
+      // });
 
-      await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
-        type: "Schedule Appoinment",
-        name: name,
-        email: email
-      });
+      // await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
+      //   type: "Schedule Appoinment",
+      //   name: name,
+      //   email: email
+      // });
       
       alert("Meeting request submitted!");
       scheduleForm.reset();
       scheduleForm.time.innerHTML = "<option value=''>Select a weekday first</option>";
       scheduleForm.time.disabled = true;
+
     } catch (err) {
       console.error(err);
       alert("Failed to submit schedule. Try again.");
     }
+
+    // 🔹 STOP LOADING (always runs)
+    button.disabled = false;
+    btnText.style.display = "inline";
+    btnLoading.style.display = "none";
   });
 }
