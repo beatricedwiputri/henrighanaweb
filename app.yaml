@@ -1,0 +1,39 @@
+runtime: python39  # Python runtime to serve static files
+
+handlers:
+  # Serve the assets folder
+  - url: /assets
+    static_dir: assets
+
+  # Serve JS files
+  - url: /(.*\.js)
+    static_files: \1
+    upload: (.*\.js)
+
+  # Serve CSS file
+  - url: /styles.css
+    static_files: styles.css
+    upload: styles.css
+
+  # Clean URLs for admin pages
+  - url: /admin
+    static_files: admin.html
+    upload: admin.html
+
+  - url: /admin-blog
+    static_files: admin-blog.html
+    upload: admin-blog.html
+
+  - url: /admin-forms
+    static_files: admin-forms.html
+    upload: admin-forms.html
+
+  # Serve other HTML pages normally
+  - url: /(.*\.html)
+    static_files: \1
+    upload: (.*\.html)
+
+  # Default route (catch-all) to index.html
+  - url: /.*
+    static_files: index.html
+    upload: index.html
