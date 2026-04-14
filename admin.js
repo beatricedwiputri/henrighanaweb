@@ -64,6 +64,24 @@ async function loadBlogs() {
       const data = docSnap.data();
       const id = docSnap.id;
 
+        // let formattedDate = "-";
+
+        // if (data.date) {
+        //   const dateObj = new Date(data.date);
+        //   formattedDate = dateObj.toLocaleDateString("de-DE");
+        // }
+
+      let formattedDate = "-";
+
+      if (data.date) {
+        const dateObj = new Date(data.date);
+        formattedDate = dateObj.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric"
+        });
+      }
+
       // Use data-* attributes to store info safely
       html += `
         <div class="blog-card" 
@@ -77,7 +95,7 @@ async function loadBlogs() {
              style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius:10px; background:#f9f9f9;">
           <h3>${data.title}</h3>
           <p><strong>Author:</strong> ${data.author}</p>
-          <p><strong>Date:</strong> ${data.date}</p>
+          <p><strong>Date:</strong> ${formattedDate}</p>
           <div class="blog-content" style="margin-top:10px;">
             ${data.content}
           </div>
@@ -441,51 +459,6 @@ const quillEdit = new Quill('#editEditor', {
   }
 });
 
-
-// // OPTIONAL: Protect admin pages
-// onAuthStateChanged(auth, (user) => {
-//   if (user && localStorage.getItem("adminLoggedIn") !== "true") {
-//     console.log("Signed in but not flagged yet in localStorage");
-//   }
-// });
-
-// // Google Sign-In button
-// document.getElementById("googleSignInBtn").addEventListener("click", async () => {
-//   try {
-//     const result = await signInWithPopup(auth, provider);
-//     const user = result.user;
-
-//     console.log("Signed in as:", user.email);
-
-//     // IMPORTANT: Firebase Storage rules will check `isAdmin` claim
-//     // Make sure this user has isAdmin=true in Firebase Admin SDK
-//     const idTokenResult = await user.getIdTokenResult();
-//     console.log("Token claims:", idTokenResult.claims);
-
-//     if (!idTokenResult.claims.isAdmin) {
-//       alert("Unauthorized user! Admin access required.");
-//       await auth.signOut();
-//       return;
-//     }
-
-//     // Save login status locally
-//     localStorage.setItem("adminLoggedIn", "true");
-
-//     // Redirect to admin page
-//     window.location.href = "admin-blog.html";
-
-//   } catch (error) {
-//     console.error("Sign-in failed:", error);
-//     alert("Sign in failed: " + error.message);
-//   }
-// });
-
-// const idTokenResult = await user.getIdTokenResult();
-// if (!idTokenResult.claims.isAdmin) {
-//   alert("Unauthorized user!");
-//   await auth.signOut();
-//   return;
-// }
 
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
   try {

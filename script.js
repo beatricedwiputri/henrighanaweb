@@ -147,27 +147,27 @@ if (intakeForm) {
         timestamp: serverTimestamp()
       });
 
-      await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
-        type: "Intake Form",
-        name: name || "-",
-        email: email || "-",
-        phone: "-",
-        organization: organization || "-",
-        location: location || "-",
-        hear: hear || "-",
-        interests: interests.length ? interests.join(", ") : "-",
-        services: "-",
-        support: support.length ? support.join(", ") : "-",
-        date: "-",
-        time: "-",
-        message: message || "-"
-      });
+      // await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
+      //   type: "Intake Form",
+      //   name: name || "-",
+      //   email: email || "-",
+      //   phone: "-",
+      //   organization: organization || "-",
+      //   location: location || "-",
+      //   hear: hear || "-",
+      //   interests: interests.length ? interests.join(", ") : "-",
+      //   services: "-",
+      //   support: support.length ? support.join(", ") : "-",
+      //   date: "-",
+      //   time: "-",
+      //   message: message || "-"
+      // });
 
-      await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
-        type: "Intake Form", // or Website Contact / Schedule Appointment
-        name: name,
-        email: email
-      });
+      // await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
+      //   type: "Intake Form", // or Website Contact / Schedule Appointment
+      //   name: name,
+      //   email: email
+      // });
 
       alert("Thank you! Your intake form has been submitted.");
       intakeForm.reset();
@@ -217,27 +217,27 @@ if (contactForm) {
         timestamp: serverTimestamp()
       });
 
-      await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
-        type: "Contact Form",
-        name: name || "-",
-        email: email || "-",
-        phone: phone || "-",
-        organization: "-",
-        location: "-",
-        hear: "-",
-        interests: "-",
-        services: "-",
-        support: "-",
-        date: "-",
-        time: "-",
-        message: message || "-"
-      });
+      // await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
+      //   type: "Contact Form",
+      //   name: name || "-",
+      //   email: email || "-",
+      //   phone: phone || "-",
+      //   organization: "-",
+      //   location: "-",
+      //   hear: "-",
+      //   interests: "-",
+      //   services: "-",
+      //   support: "-",
+      //   date: "-",
+      //   time: "-",
+      //   message: message || "-"
+      // });
 
-      await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
-        type: "Contact Form", // or Website Contact / Schedule Appointment
-        name: name,
-        email: email
-      });
+      // await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
+      //   type: "Contact Form", // or Website Contact / Schedule Appointment
+      //   name: name,
+      //   email: email
+      // });
 
       alert("Message sent!");
       contactForm.reset();
@@ -292,27 +292,27 @@ if (scheduleForm) {
         timestamp: serverTimestamp()
       });
 
-      await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
-        type: "Schedule Appointment",
-        name: name || "-",
-        email: email || "-",
-        phone: phone || "-",
-        organization: "-",
-        location: "-",
-        hear: "-",
-        interests: "-",
-        services: services.length ? services.join(", ") : "-",
-        support: "-",
-        date: date || "-",
-        time: time || "-",
-        message: message || "-"
-      });
+      // await emailjs.send("service_84f4ew1", "template_n4j6zlb", {
+      //   type: "Schedule Appointment",
+      //   name: name || "-",
+      //   email: email || "-",
+      //   phone: phone || "-",
+      //   organization: "-",
+      //   location: "-",
+      //   hear: "-",
+      //   interests: "-",
+      //   services: services.length ? services.join(", ") : "-",
+      //   support: "-",
+      //   date: date || "-",
+      //   time: time || "-",
+      //   message: message || "-"
+      // });
 
-      await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
-        type: "Schedule Appoinment",
-        name: name,
-        email: email
-      });
+      // await emailjs.send("service_84f4ew1", "template_ce3kj4n", {
+      //   type: "Schedule Appoinment",
+      //   name: name,
+      //   email: email
+      // });
       
       alert("Meeting request submitted!");
       scheduleForm.reset();

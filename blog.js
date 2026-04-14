@@ -36,6 +36,32 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+// function formatDate(data) {
+//   let formattedDate = "-";
+
+//   if (data.date) {
+//     const dateObj = new Date(data.date);
+//     formattedDate = dateObj.toLocaleDateString("de-DE");
+//   }
+
+//   return formattedDate;
+// }
+
+function formatDate(data) {
+  let formattedDate = "-";
+
+  if (data.date) {
+    const dateObj = new Date(data.date);
+    formattedDate = dateObj.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric"
+    });
+  }
+
+  return formattedDate;
+}
+
 // Load all blogs for listing page
 async function loadBlogs() {
   const blogList = document.getElementById("blogList");
@@ -54,13 +80,14 @@ async function loadBlogs() {
     snapshot.forEach(docSnap => {
       const data = docSnap.data();
       const id = docSnap.id;
+      const formattedDate = formatDate(data);
 
       html += `
         <div class="blog-post" data-aos="fade-up">
           <img src="${data.imageUrl}" alt="${data.title}">
           <div class="blog-content">
             <h4>${data.title}</h4>
-            <p class="date">${data.date}</p>
+            <p class="date">${formattedDate}</p>
             <p>${data.content.substring(0, 550)}...</p>
             <a href="blog1.html?id=${id}" class="readmore">Read more</a>
           </div>
@@ -92,9 +119,13 @@ async function loadBlogPost() {
     }
 
     const data = docSnap.data();
+    const formattedDate = formatDate(data);
+
     container.innerHTML = `
       <h1 data-aos="fade-up">${data.title}</h1>
-      <p class="meta" data-aos="fade-up" data-aos-delay="200">${data.date} by ${data.author}</p>
+      <p<p class="meta" data-aos="fade-up" data-aos-delay="200">
+        ${formattedDate} by ${data.author}
+      </p>
       <img src="${data.imageUrl}" alt="${data.title}" data-aos="fade-up" data-aos-delay="400">
       <div class="blog-body">${data.content}</div>
     `;
